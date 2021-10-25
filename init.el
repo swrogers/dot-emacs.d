@@ -193,7 +193,7 @@
 	register-preview-function #'consult-register-format)
 
   :config
-  (setq consult-project-root-function (projectile-project-root)))
+  (setq consult-project-root-function 'projectile-project-root))
 
 (use-package embark
   :bind
