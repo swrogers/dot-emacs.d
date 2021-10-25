@@ -339,10 +339,16 @@
 	company-idle-delay 0.4))
 
 ;; LSP Stuff
+;; Need the following for Typescript/Angular 
+;; npm install -g @angular/language-service@next typescript @angular/language-server
 (use-package lsp-mode
+  :hook 
+  ((html-mode web-mode json-mode
+	      js2-mode typescript-mode) . lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-c l"
 	lsp-auto-configure t
+	lsp-auto-guess-root t
 	lsp-enable-completion-at-point t
 	lsp-enable-indentation t
 	lsp-lens-enable t
