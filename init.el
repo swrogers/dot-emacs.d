@@ -255,6 +255,11 @@
 (use-package treemacs-projectile
   :after treemacs projectile)
 
+;; Treemacs icons (any...) and
+;; yasnippet do not play nicely
+;; if using yasnippet, then treemacs does
+;; not display icons properly, nor
+;; does it do directory compaction
 (use-package treemacs-all-the-icons
   :after treemacs all-the-icons)
 
@@ -328,11 +333,22 @@
   (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
   (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-barf-sexp))
 
+;; YASnippet
+;; LSP seems to need this?
+;; this interferes with treemacs icons??!
+;; and treemacs directory compaction
+(use-package yasnippet
+  :config
+  (yas-global-mode 1)) ;; does this play nicely with treemacs lsp?
+
+
+(use-package yasnippet-snippets)
+
 ;; Company
 ;; lots of stuff seems to need this, so...
 (use-package company
   :hook
-  (prog-mode . company-mode)
+  ((prog-mode html-mode web-mode) . company-mode)
   
   :config
   (setq company-minimum-prefix-length 1
@@ -342,6 +358,9 @@
 ;; Need the following for Typescript/Angular 
 ;; npm install -g @angular/language-service@next typescript @angular/language-server
 (use-package lsp-mode
+  :commands
+  (lsp lsp-deferred)
+  
   :hook 
   ((html-mode web-mode json-mode
 	      js2-mode typescript-mode) . lsp-deferred)
@@ -352,6 +371,7 @@
 	lsp-enable-completion-at-point t
 	lsp-enable-indentation t
 	lsp-lens-enable t
+	lsp-enable-snippet t 
 	lsp-modeline-diagnostics-enable t)
 
   :config
@@ -362,20 +382,26 @@
 
 (use-package lsp-ui)
 
-(use-package lsp-treemacs
-  :config
-  (setq lsp-treemacs-sync-mode 1))
+;; lsp-treemacs: treemacs and yasnippets
+;; don't behave for me. yasnippets interferes with
+;; treemacs icons and directory compaction.
+;; (use-package lsp-treemacs
+;;   :after doom-themes 
+;;   :config
+;;   (setq lsp-treemacs-sync-mode 1)
+;;   (doom-themes-treemacs-config))  ;; this at least brings icons and stuff back, but ugly
 
 (use-package consult-lsp
   :config
   (consult-lsp-marginalia-mode))
 
-(use-package company-lsp
-  :config
-  (setq company-lsp-cache-candidates 'auto
-	company-lsp-async t
-	company-lsp-enable-recompletion t)
-  (push 'company-lsp company-backends))
+;; Note that company-lsp is no longer supported
+;; (use-package company-lsp
+;;   :config
+;;   (setq company-lsp-cache-candidates 'auto
+;; 	company-lsp-async t
+;; 	company-lsp-enable-recompletion t)
+;;   (push 'company-lsp company-backends))
 
 ;; Typescript
 (use-package typescript-mode
@@ -439,6 +465,15 @@
 
   :hook
   (web-mode . lsp))
+
+;; Emmet Mode
+;; Seems to work well, does require C-j expansion
+(use-package emmet-mode
+  :hook
+  ((sgml-mode css-mode) . emmet-mode)
+
+  :config
+  (setq emmet-move-cursor-between-quotes t))
 
 ;; Org Mode
 ;; ....because why not
