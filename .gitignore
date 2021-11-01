@@ -9,4 +9,7 @@
 /places
 /projectile-bookmarks.eld
 /recentf
-/straight/
+/transient/
+/straight/build-cache.el
+/straight/build/
+/straight/repos/

@@ -104,6 +104,23 @@
 (use-package all-the-icons) ;; M-x all-the-icons-install-fonts
 
 ;; Theming
+;; Modus Themes
+(use-package modus-themes
+  :ensure
+  :init
+  ;; customizations prior to loading the theme
+  (setq modus-themes-italic-constructs t
+	modus-themes-bold-constructs t
+	modus-themes-mixed-fonts t
+	modus-themes-subtle-line-numbers t
+	modus-themes-intense-markup t
+	modus-themes-paren-match '(bold intense))
+  ;; load theme files before enabling theme
+  (modus-themes-load-themes)
+  :config
+  ;; load theme of choice
+  (modus-themes-load-vivendi))
+
 (use-package solaire-mode
   :hook
   (change-major-mode . turn-on-solaire-mode)
@@ -111,12 +128,12 @@
   :config
   (solaire-global-mode t))
 
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-	doom-themes-enable-italic t)
-  (load-theme 'doom-acario-dark t)
-  (doom-themes-visual-bell-config))
+;; (use-package doom-themes
+;;   :config
+;;   (setq doom-themes-enable-bold t
+;; 	doom-themes-enable-italic t)
+;;   (load-theme 'doom-acario-dark t)
+;;   (doom-themes-visual-bell-config))
 
 (use-package doom-modeline
   :config
@@ -245,6 +262,10 @@
   :bind
   (:map global-map ("M-0" . treemacs-select-window))
 
+  ;; Uncomment the following to have treemacs only show the current project
+;;  :custom
+;;  (treemacs-project-follow-mode 1)
+  
   :config
   (setq treemacs-git-mode 'deferred
 	treemacs-follow-mode t
