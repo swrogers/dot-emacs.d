@@ -376,13 +376,13 @@
 	company-idle-delay 0.4))
 
 ;; LSP Stuff
-;; Need the following for Typescript/Angular 
+;; Need the following for Typescript/Angular
 ;; npm install -g @angular/language-service@next typescript @angular/language-server
 (use-package lsp-mode
   :commands
   (lsp lsp-deferred)
   
-  :hook 
+  :hook
   ((html-mode web-mode json-mode
 	      js2-mode typescript-mode) . lsp-deferred)
   :init
@@ -401,7 +401,9 @@
   (global-set-key (kbd "C-c l") lsp-command-map)
   (push 'emacs-lisp-mode lsp-disabled-clients))
 
-(use-package lsp-ui)
+(use-package lsp-ui
+  :custom
+  (lsp-ui-doc-position 'bottom))
 
 ;; lsp-treemacs: treemacs and yasnippets
 ;; don't behave for me. yasnippets interferes with
