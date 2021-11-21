@@ -50,6 +50,14 @@
 	     ("C-c v" . vterm-other-window))
 
 
+;; Hydra
+(use-package hydra)
+
+;; use-package-hydra
+;; - intregrate hydra with use-package
+(use-package use-package-hydra
+  :after hydra)
+
 ;; Global Line Numbers
 (require 'display-line-numbers)
 
@@ -498,6 +506,27 @@
   :config
   (setq emmet-move-cursor-between-quotes t))
 
+;; Python Stuff
+;; Function to auto set and activate the proper pyvenv
+;; from: https://github.com/jorgenschaefer/pyvenv/issues/51#issuecomment-474785730
+(defun swr/pyvenv-autoload ()
+  "Automatically activates pyvenv version if .venv directory exists."
+  (f-traverse-upwards
+   (lambda (path)
+     (let ((venv-path (f-expand ".venv" path)))
+       (if (f-exists? venv-path)
+	   (progn
+	     (pyvenv-workon venv-path))
+	 t)))))
+;; Will want the following installed in the virtual env:
+;; python3-jedi black python3-autopep8 yapf3 python3-yapf
+(use-package elpy
+  :init
+  (elpy-enable)
+  :hook
+  (python-mode . swr/pyvenv-autoload))
+
+
 ;; Org Mode
 ;; ....because why not
 (use-package org)
@@ -505,6 +534,18 @@
 ;; Org Roam
 ;; ..because, eh, why not
 (setq swr/org-roam-directory (concat (getenv "HOME") "/Documents/org-roam/"))
+
+;; This is a working hydra example for the
+;; below keybinds of org-roam.
+;; I'm not sure that it's worth it, though.
+;; (defhydra swr-org-roam-hydra (global-map "C-c o")
+;;   "Org Hydra"
+;;   ("f" org-roam-node-find "Find Node" :column "Org Roam")
+;;   ("g" org-roam-graph "Graph Node")
+;;   ("r" org-roam-random "Random Node")
+;;   ("c" org-roam-capture "Capture Node"))
+;; Creates the following function to bind:
+;; (swr-org-roam-hydra/body)
 
 (use-package org-roam
   :after
@@ -530,6 +571,48 @@
 	  ("C-c n t" . org-roam-tag-add)
 	  ("C-c n a" . org-roam-alias-add)
 	  ("C-c n l" . org-roam-buffer-toggle)))))
+
+;; Polymode for ORG
+;; (use-package polymode)
+
+;; Polymode - Markdown
+;; (use-package poly-markdown)
+
+;; Polymode - R
+;; This needs ESS installed as well
+;; (use-package ess
+;;  :init
+;;  (require 'ess-r-mode))
+
+;; (use-package poly-R)
+
+;; Start the emacs server daemon, because
+;; of org-protocal usage
+;; (server-start)
+;; eventually, maybe, go with a proper daemon
+
+;; org-protocol
+;; also need: https://gist.github.com/detrout/d27ad655bfb3b09007fa2683f213d4cb
+;;
+;; ~/.local/share/applications/org-protocol.desktop
+;; --------------------
+;; [Desktop Entry]
+;; Version=1.0
+;; Name=org-protocol helper
+;; Comment=helper to allow GNOME to open org-protocol: pseudo-urls
+;; TryExec=/usr/bin/emacsclient
+;; Exec=/usr/bin/emacsclient %u
+;; NoDisplay=true
+;; Icon=emacs24
+;; Terminal=false
+;; Type=Application
+
+;; ~/.config/mimeapps.list:
+;; add:
+;; [Added Associations]
+;; x-scheme-handler/org-protocol=org-protocol.desktop;
+
+;; (require 'org-protocol)
 
 ;; Load the custom.el file should it exist
 (when (file-exists-p custom-file)
