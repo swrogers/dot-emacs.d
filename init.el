@@ -492,7 +492,9 @@
   (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))  
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 
   :hook
   (web-mode . lsp))
@@ -573,18 +575,25 @@
 	  ("C-c n l" . org-roam-buffer-toggle)))))
 
 ;; Polymode for ORG
-;; (use-package polymode)
+(use-package polymode)
 
 ;; Polymode - Markdown
-;; (use-package poly-markdown)
+(use-package poly-markdown)
 
 ;; Polymode - R
 ;; This needs ESS installed as well
-;; (use-package ess
-;;  :init
-;;  (require 'ess-r-mode))
+(use-package ess
+ :init
+ (require 'ess-r-mode))
 
-;; (use-package poly-R)
+(use-package poly-R
+  :config
+  ;; The following come from:
+  ;; https://plantarum.ca/2021/10/03/emacs-tutorial-rmarkdown/
+  ;; Enable Github Flavored markdown for Rmd files
+  (add-to-list 'auto-mode-alist '("\\.[rR]md\\'" . poly-gfm+r-mode))
+  ;; Have gfm-mode automatically insert braces for code blocks
+  (setq markdown-code-block-braces t))
 
 ;; Start the emacs server daemon, because
 ;; of org-protocal usage
