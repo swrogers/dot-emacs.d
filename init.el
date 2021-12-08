@@ -203,11 +203,13 @@
   (marginalia-mode))
 
 ;; consult - badassery all around
+;; look into `consult-yank-from-kill-ring'
 (use-package consult
   :bind
   (("C-x b" . consult-buffer)  ;; Better buffer swap, with preview
    ("C-s" . consult-line)      ;; Cool searching replacement
    ("C-c h" . consult-history)
+   ("C-c y" . consult-yank-from-kill-ring)
    ("C-c r" . consult-ripgrep)) ;; Killer grep in directories/projects
 
   :hook
@@ -299,6 +301,23 @@
 
 (use-package treemacs-magit
   :after treemacs magit)
+
+;; I'll leave treemacs, since other
+;; packages like that..but here we have
+;; neotree stuff
+;; Requires all-the-icons for `icons'
+(use-package neotree
+  :bind
+  ("<f8>" .  neotree-toggle)
+
+  :config
+  ;; tips from:
+  ;; https://www.emacswiki.org/emacs/NeoTree
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)
+	neo-smart-open t  ;; find current file and jump to node
+	;; the below changes root automatically on
+	;; projectile switch project
+	projectile-switch-project-action 'neotree-projectile-action))
 
 ;; Version Control / Source Code Repo
 (use-package magit

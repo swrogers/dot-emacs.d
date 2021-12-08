@@ -4,7 +4,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((elisp-lint-indent-specs
+   '((cider-cljs-repl-types
+      (edge "(do (require 'dev-extras) ((resolve 'dev-extras/cljs-repl)))"))
+     (cider-repl-init-code "(dev)")
+     (cider-ns-refresh-after-fn . "dev-extras/resume")
+     (cider-ns-refresh-before-fn . "dev-extras/suspend")
+     (elisp-lint-indent-specs
       (if-let* . 2)
       (when-let* . 1)
       (let* . defun)
