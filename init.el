@@ -104,6 +104,7 @@
       auto-save-interval 200)
 
 ;; Set the font
+;; yay ttc-iosevka-ss14
 (set-face-attribute 'default nil
 		    ;;		    :font "FantasqueSansMono Nerd Font")
 		    :font "Iosevka SS14")
@@ -419,7 +420,7 @@
 	lsp-enable-completion-at-point t
 	lsp-enable-indentation t
 	lsp-lens-enable t
-	lsp-enable-snippet t 
+	lsp-enable-snippet t
 	lsp-modeline-diagnostics-enable t)
 
   :config
@@ -436,7 +437,7 @@
 ;; don't behave for me. yasnippets interferes with
 ;; treemacs icons and directory compaction.
 ;; (use-package lsp-treemacs
-;;   :after doom-themes 
+;;   :after doom-themes
 ;;   :config
 ;;   (setq lsp-treemacs-sync-mode 1)
 ;;   (doom-themes-treemacs-config))  ;; this at least brings icons and stuff back, but ugly
