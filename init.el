@@ -552,6 +552,8 @@
   :hook
   (python-mode . swr/pyvenv-autoload))
 
+;; REST Client
+(use-package restclient)
 
 ;; Org Mode
 ;; ....because why not
