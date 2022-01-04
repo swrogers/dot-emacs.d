@@ -261,7 +261,11 @@
 		   dashboard-items '((recents . 5)
 				     (projects . 5)))
 	     :config
-	     (dashboard-setup-startup-hook))
+	     (dashboard-setup-startup-hook)
+	     ;; When using daemon mode, the default buffer
+	     ;; is *scratch*. I don't want that.
+	     (setq initial-buffer-choice
+		   (lambda () (get-buffer "*dashboard*"))))
 
 ;; ACE Window
 (use-package ace-window
