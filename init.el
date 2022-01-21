@@ -21,7 +21,7 @@
       visible-bell t)
 
 (tool-bar-mode -1)
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -58,6 +58,9 @@
 (use-package use-package-hydra
   :after hydra)
 
+;; YAML Settings
+(use-package yaml-mode)
+
 ;; Global Line Numbers
 (require 'display-line-numbers)
 
@@ -67,7 +70,8 @@
     shell-mode
     term-mode
     ansi-term-mode
-    treemacs-mode)
+    treemacs-mode
+    neotree-mode)
   "Major modes on which to disable the linum mode, exempts them from global requirement."
   :group 'display-line-numbers
   :type 'list
