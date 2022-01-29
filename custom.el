@@ -4,7 +4,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((cider-cljs-repl-types
+   '((cider-ns-refresh-after-fn . "integrant.repl/resume")
+     (cider-ns-refresh-before-fn . "integrant.repl/suspend")
+     (cider-cljs-repl-types
       (edge "(do (require 'dev-extras) ((resolve 'dev-extras/cljs-repl)))"))
      (cider-repl-init-code "(dev)")
      (cider-ns-refresh-after-fn . "dev-extras/resume")
