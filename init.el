@@ -317,7 +317,7 @@
 ;; Requires all-the-icons for `icons'
 (use-package neotree
   :bind
-  ("<f8>" .  neotree-toggle)
+  ;; ("<f8>" .  neotree-toggle)
 
   :config
   ;; tips from:
@@ -327,6 +327,19 @@
 	;; the below changes root automatically on
 	;; projectile switch project
 	projectile-switch-project-action 'neotree-projectile-action))
+
+;; Trying out dired-sidebar as a
+;; treemacs/neotree replacement
+(use-package dired-sidebar
+  :bind
+  ("<f8>" . dired-sidebar-toggle-sidebar)
+  :commands
+  (dired-sidebar-toggle-sidebar)
+
+  :config
+  (setq dired-sidebar-theme 'vscode
+	dired-sidebar-use-term-integration t
+	dired-sidebar-use-custom-font t ))
 
 ;; Version Control / Source Code Repo
 (use-package magit
