@@ -263,13 +263,13 @@
 		   dashboard-set-file-icons t
 		   dashboard-projects-backend 'projectile
 		   dashboard-items '((recents . 5)
-				     (projects . 5)))
+				     (projects . 5))
+		   
+		   ;; When using daemon mode, the default buffer
+		   ;; is *scratch*. I don't want that.
+		   initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 	     :config
-	     (dashboard-setup-startup-hook)
-	     ;; When using daemon mode, the default buffer
-	     ;; is *scratch*. I don't want that.
-	     (setq initial-buffer-choice
-		   (lambda () (get-buffer "*dashboard*"))))
+	     (dashboard-setup-startup-hook))
 
 ;; ACE Window
 (use-package ace-window
