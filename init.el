@@ -361,7 +361,8 @@
 ;; Flycheck
 (use-package flycheck
   :init
-  (global-flycheck-mode))
+  (global-flycheck-mode)
+  (diff-hl-flydiff-mode 1))
 
 ;; Tree Sitter
 (use-package tree-sitter)
