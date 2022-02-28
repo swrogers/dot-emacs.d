@@ -330,6 +330,9 @@
 
 ;; Trying out dired-sidebar as a
 ;; treemacs/neotree replacement
+;;; Requires vscode-icon for icons...
+(use-package vscode-icon)
+
 (use-package dired-sidebar
   :bind
   ("<f8>" . dired-sidebar-toggle-sidebar)
@@ -351,8 +354,8 @@
   (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
   (magit-post-refresh-hook . diff-hl-magit-post-refresh)
 
-  :config
-  (global-diff-hl-mode))
+  :init
+  (global-diff-hl-mode 1))
 
 ;; Programming related stuff
 ;; Flycheck
