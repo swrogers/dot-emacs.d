@@ -605,6 +605,7 @@
 
   :custom
   (org-roam-directory (file-truename swr/org-roam-directory))
+  (org-roam-complete-everywhere t)
 
   :config
   (org-roam-setup)
@@ -616,11 +617,11 @@
    ("C-c n r" . org-roam-node-random)
    (:map org-mode-map
 	 (("C-c n i" . org-roam-node-insert)
+	  ("C-M-i" . completion-at-point)
 	  ("C-c n o" . org-id-get-create)
 	  ("C-c n t" . org-roam-tag-add)
 	  ("C-c n a" . org-roam-alias-add)
 	  ("C-c n l" . org-roam-buffer-toggle)))))
-
 ;; Polymode for ORG
 (use-package polymode)
 
