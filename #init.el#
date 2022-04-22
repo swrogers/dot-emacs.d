@@ -330,9 +330,6 @@
 
 ;; Trying out dired-sidebar as a
 ;; treemacs/neotree replacement
-;;; Requires vscode-icon for icons...
-(use-package vscode-icon)
-
 (use-package dired-sidebar
   :bind
   ("<f8>" . dired-sidebar-toggle-sidebar)
@@ -354,15 +351,14 @@
   (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
   (magit-post-refresh-hook . diff-hl-magit-post-refresh)
 
-  :init
-  (global-diff-hl-mode 1))
+  :config
+  (global-diff-hl-mode))
 
 ;; Programming related stuff
 ;; Flycheck
 (use-package flycheck
   :init
-  (global-flycheck-mode)
-  (diff-hl-flydiff-mode 1))
+  (global-flycheck-mode))
 
 ;; Tree Sitter
 (use-package tree-sitter)
@@ -578,16 +574,7 @@
 
 ;; Org Mode
 ;; ....because why not
-(use-package org
-  :init
-  (require 'org-tempo)
-  (org-babel-do-load-languages
-   'org-babel-load-languages '((shell  . t)
-			       (js  . t)
-			       (emacs-lisp . t)
-			       (clojure . t)
-			       (python . t)))
-  (setq org-babel-clojure-backend 'cider))
+(use-package org)
 
 ;; Org Roam
 ;; ..because, eh, why not
@@ -614,7 +601,6 @@
 
   :custom
   (org-roam-directory (file-truename swr/org-roam-directory))
-  (org-roam-complete-everywhere t)
 
   :config
   (org-roam-setup)
@@ -626,11 +612,11 @@
    ("C-c n r" . org-roam-node-random)
    (:map org-mode-map
 	 (("C-c n i" . org-roam-node-insert)
-	  ("C-M-i" . completion-at-point)
 	  ("C-c n o" . org-id-get-create)
 	  ("C-c n t" . org-roam-tag-add)
 	  ("C-c n a" . org-roam-alias-add)
 	  ("C-c n l" . org-roam-buffer-toggle)))))
+
 ;; Polymode for ORG
 (use-package polymode)
 
@@ -679,10 +665,6 @@
 ;; x-scheme-handler/org-protocol=org-protocol.desktop;
 
 ;; (require 'org-protocol)
-
-;; ox-hugo for website building
-;; https://www.kengrimes.com/ox-hugo-tutorial/
-(use-package ox-hugo)
 
 ;; Load the custom.el file should it exist
 (when (file-exists-p custom-file)
