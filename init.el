@@ -605,7 +605,7 @@
 
   :custom
   (org-roam-directory (file-truename swr/org-roam-directory))
-  (org-roam-complete-everywhere t)
+  (org-roam-completion-everywhere t)
 
   :config
   (org-roam-setup)
