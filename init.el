@@ -523,6 +523,10 @@
 
 (use-package cider)
 
+(straight-use-package '(clj-deps-new :type git
+				     :host github
+				     :repo "jpe90/emacs-clj-deps-new"))
+
 ;; Web Mode
 (use-package web-mode
   :config
