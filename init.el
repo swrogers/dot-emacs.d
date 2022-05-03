@@ -523,9 +523,14 @@
 
 (use-package cider)
 
-(straight-use-package '(clj-deps-new :type git
-				     :host github
-				     :repo "jpe90/emacs-clj-deps-new"))
+(use-package clj-deps-new
+  :straight (clj-deps-new :type git
+			  :host github
+			  :repo "jpe90/emacs-clj-deps-new"))
+
+;; (straight-use-package '(clj-deps-new :type git
+;; 				     :host github
+;; 				     :repo "jpe90/emacs-clj-deps-new"))
 
 ;; Web Mode
 (use-package web-mode
