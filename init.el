@@ -111,7 +111,8 @@
 ;; yay ttc-iosevka-ss14
 (set-face-attribute 'default nil
 		    ;;		    :font "FantasqueSansMono Nerd Font")
-		    :font "Iosevka SS14")
+		    ;; :font "Iosevka SS14"
+		    :font "SF Mono")
 
 ;; All the icons
 (use-package all-the-icons) ;; M-x all-the-icons-install-fonts
@@ -588,6 +589,10 @@
 ;; Org Mode
 ;; ....because why not
 (use-package org
+  :bind
+  (("C-c o l" . org-store-link)
+   ("C-c o a" . org-agenda)
+   ("C-c o c" . org-capture))
   :init
   (require 'org-tempo)
   (org-babel-do-load-languages
