@@ -638,6 +638,7 @@
   (("C-c n f" . org-roam-node-find)
    ("C-c n g" . org-roam-graph)
    ("C-c n r" . org-roam-node-random)
+   ("C-c n c" . org-roam-capture)
    (:map org-mode-map
 	 (("C-c n i" . org-roam-node-insert)
 	  ("C-M-i" . completion-at-point)
