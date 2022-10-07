@@ -283,8 +283,8 @@
   (:map global-map ("M-0" . treemacs-select-window))
 
   ;; Uncomment the following to have treemacs only show the current project
-;;  :custom
-;;  (treemacs-project-follow-mode 1)
+  :custom
+  (treemacs-project-follow-mode 1)
   
   :config
   (setq treemacs-git-mode 'deferred
@@ -316,34 +316,34 @@
 ;; packages like that..but here we have
 ;; neotree stuff
 ;; Requires all-the-icons for `icons'
-(use-package neotree
-  :bind
-  ;; ("<f8>" .  neotree-toggle)
+;; (use-package neotree
+;;   :bind
+;;   ;; ("<f8>" .  neotree-toggle)
 
-  :config
-  ;; tips from:
-  ;; https://www.emacswiki.org/emacs/NeoTree
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)
-	neo-smart-open t  ;; find current file and jump to node
-	;; the below changes root automatically on
-	;; projectile switch project
-	projectile-switch-project-action 'neotree-projectile-action))
+;;   :config
+;;   ;; tips from:
+;;   ;; https://www.emacswiki.org/emacs/NeoTree
+;;   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)
+;; 	neo-smart-open t  ;; find current file and jump to node
+;; 	;; the below changes root automatically on
+;; 	;; projectile switch project
+;; 	projectile-switch-project-action 'neotree-projectile-action))
 
 ;; Trying out dired-sidebar as a
 ;; treemacs/neotree replacement
 ;;; Requires vscode-icon for icons...
 (use-package vscode-icon)
 
-(use-package dired-sidebar
-  :bind
-  ("<f8>" . dired-sidebar-toggle-sidebar)
-  :commands
-  (dired-sidebar-toggle-sidebar)
+;; (use-package dired-sidebar
+;;   :bind
+;;   ("<f8>" . dired-sidebar-toggle-sidebar)
+;;   :commands
+;;   (dired-sidebar-toggle-sidebar)
 
-  :config
-  (setq dired-sidebar-theme 'vscode
-	dired-sidebar-use-term-integration t
-	dired-sidebar-use-custom-font t ))
+;;   :config
+;;   (setq dired-sidebar-theme 'vscode
+;; 	dired-sidebar-use-term-integration t
+;; 	dired-sidebar-use-custom-font t ))
 
 ;; Version Control / Source Code Repo
 (use-package magit
