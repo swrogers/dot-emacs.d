@@ -256,6 +256,29 @@
 	     (:map projectile-mode-map
 		   ("C-c p" . projectile-command-map)))
 
+;; nex3/perspective-el
+;; Perspective application
+(use-package perspective
+  :after
+  consult
+  
+  :bind
+  ;; switch from the default buffer list to...
+  (("C-x C-b" . persp-list-buffers)
+   ;; persp-kill-buffer* uses `completing-read' to list all buffers
+   ("C-x k" . persp-kill-buffer*))
+
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))
+  (persp-sort 'created) ;; or access, name
+
+  :init
+  (persp-mode)
+  ;; ..recall that we use `consult' : "C-x b"
+  ;; .. so use perspective as a source for buffer list
+  (consult-customize consult--source-buffer :hidden t :default nil)
+  (add-to-list 'consult-buffer-sources persp-consult-source))
+
 ;; Dashboard settings
 (use-package dashboard
 	     :init
