@@ -624,7 +624,8 @@
 			       (emacs-lisp . t)
 			       (clojure . t)
 			       (python . t)))
-  (setq org-babel-clojure-backend 'cider))
+  (setq org-babel-clojure-backend 'cider
+	org-confirm-babel-evaluate nil))
 
 ;; Org Roam
 ;; ..because, eh, why not
