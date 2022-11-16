@@ -536,6 +536,9 @@
 		      "--trailing-comma" "all")))
 
 ;; Clojure
+(use-package flycheck-clj-kondo)
+(use-package flycheck-joker)
+
 (use-package clojure-mode
   :hook
   (clojure-mode . lsp)
@@ -543,6 +546,15 @@
   (clojurec-mode . lsp)
 
   :config
+  (require 'flycheck-clj-kondo)
+  (require 'flycheck-joker)
+  (dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
+    (setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
+  (dolist (checkers '((clj-kondo-clj . clojure-joker)
+		      (clj-kondo-cljs . clojurescript-joker)
+		      (clj-kondo-cljc . clojure-joker)
+		      (clj-kondo-edn . edn-joker)))
+    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
   (setq clojure-align-forms-automatically t))
 
 (use-package cider)
@@ -555,6 +567,9 @@
 ;; (straight-use-package '(clj-deps-new :type git
 ;; 				     :host github
 ;; 				     :repo "jpe90/emacs-clj-deps-new"))
+
+;; Guile Scheme
+(use-package geiser-guile)
 
 ;; Web Mode
 (use-package web-mode
