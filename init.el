@@ -111,8 +111,8 @@
 ;; yay ttc-iosevka-ss14
 (set-face-attribute 'default nil
 		    ;;		    :font "FantasqueSansMono Nerd Font")
-		    ;; :font "Iosevka SS14"
-		    :font "SF Mono")
+		    :font "Iosevka SS14")
+		    ;; :font "SF Mono")
 
 ;; All the icons
 (use-package all-the-icons) ;; M-x all-the-icons-install-fonts
@@ -641,6 +641,15 @@
 			       (python . t)))
   (setq org-babel-clojure-backend 'cider
 	org-confirm-babel-evaluate nil))
+
+(define-skeleton org-header-skeleton
+  "Header info for an Org file."
+  "Title: ""#+TITLE: " str " \n"
+  "#+AUTHOR: " user-full-name "\n"
+  "#+EMAIL: " user-mail-address "\n"
+  "#+DATE: " (format-time-string "%Y-%m-%d") "\n")
+
+(global-set-key [C-S-f1] 'org-header-skeleton)
 
 ;; Org Roam
 ;; ..because, eh, why not

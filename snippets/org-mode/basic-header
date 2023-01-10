@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Org Mode Basic Header
+# key: <t
+# --
+
+#+TITLE: ${1:Title}
+#+AUTHOR: ${2:`user-full-name`}
+#+EMAIL: ${3:`user-mail-address`}
+#+DATE:  ${4:`(format-time-string "%Y-%m-%d")`}
+
+$0
