@@ -110,15 +110,10 @@
 ;; Set the font
 ;; yay ttc-iosevka-ss14
 (set-face-attribute 'default nil
-<<<<<<< Updated upstream
-		    ;;		    :font "FantasqueSansMono Nerd Font")
-		    :font "Iosevka SS14")
-		    ;; :font "SF Mono")
-=======
-                    ;;		    :font "FantasqueSansMono Nerd Font")
+                    ;; :font "FantasqueSansMono Nerd Font")
                     ;; :font "Iosevka SS14"
                     :font "SF Mono")
->>>>>>> Stashed changes
+
 
 ;; All the icons
 (use-package all-the-icons) ;; M-x all-the-icons-install-fonts
