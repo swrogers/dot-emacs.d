@@ -35,10 +35,10 @@
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	 'silent
-	 'inhibit-cookies)
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent
+         'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -46,8 +46,8 @@
 (straight-use-package 'use-package)
 
 (use-package vterm
-	     :bind
-	     ("C-c v" . vterm-other-window))
+             :bind
+             ("C-c v" . vterm-other-window))
 
 
 ;; Hydra
@@ -80,7 +80,7 @@
 (defun display-line-numbers--turn-on ()
   "Turn on line numbers but exempt certain major modes defined in `display-line-numbers-exempt-modes'"
   (if (and (not (member major-mode display-line-numbers-exempt-modes))
-	   (not (minibufferp)))
+           (not (minibufferp)))
       (display-line-numbers-mode)))
 
 (global-display-line-numbers-mode)
@@ -110,9 +110,15 @@
 ;; Set the font
 ;; yay ttc-iosevka-ss14
 (set-face-attribute 'default nil
+<<<<<<< Updated upstream
 		    ;;		    :font "FantasqueSansMono Nerd Font")
 		    :font "Iosevka SS14")
 		    ;; :font "SF Mono")
+=======
+                    ;;		    :font "FantasqueSansMono Nerd Font")
+                    ;; :font "Iosevka SS14"
+                    :font "SF Mono")
+>>>>>>> Stashed changes
 
 ;; All the icons
 (use-package all-the-icons) ;; M-x all-the-icons-install-fonts
@@ -124,11 +130,11 @@
   :init
   ;; customizations prior to loading the theme
   (setq modus-themes-italic-constructs t
-	modus-themes-bold-constructs t
-	modus-themes-mixed-fonts t
-	modus-themes-subtle-line-numbers t
-	modus-themes-intense-markup t
-	modus-themes-paren-match '(bold intense))
+        modus-themes-bold-constructs t
+        modus-themes-mixed-fonts t
+        modus-themes-subtle-line-numbers t
+        modus-themes-intense-markup t
+        modus-themes-paren-match '(bold intense))
   ;; load theme files before enabling theme
   (modus-themes-load-themes)
   :config
@@ -175,7 +181,7 @@
 (use-package vertico
   :bind
   (:map minibuffer-local-map
-	("<left>" . backward-kill-word))  ;; use left arrow to "traverse" directory
+        ("<left>" . backward-kill-word))  ;; use left arrow to "traverse" directory
   :custom
   (vertico-cycle t)  ;; go back to top when you reach the bottom of selection list
   :init
@@ -185,8 +191,8 @@
 (use-package orderless
   :init
   (setq completion-styles '(orderless)
-	completion-category-defaults nil
-	completion-category-overrides '((file (styles partial-completion)))))
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package savehist
   :init
@@ -196,7 +202,7 @@
 (use-package marginalia
   :after
   vertico
-  
+
   :bind
   (("M-A" . marginalia-cycle)
    :map minibuffer-local-map
@@ -223,7 +229,7 @@
 
   :init
   (setq register-preview-delay 0
-	register-preview-function #'consult-register-format)
+        register-preview-function #'consult-register-format)
 
   :config
   (setq consult-project-root-function 'projectile-project-root))
@@ -236,9 +242,9 @@
 
   :config
   (add-to-list 'display-buffer-alist
-	       '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-		 nil
-		 (window-parameters (mode-line-format . none)))))
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
 
 (use-package embark-consult
   :after (embark consult)
@@ -249,19 +255,19 @@
 
 ;; Projectile
 (use-package projectile
-	     :init
-	     (projectile-mode 1)
+             :init
+             (projectile-mode 1)
 
-	     :bind
-	     (:map projectile-mode-map
-		   ("C-c p" . projectile-command-map)))
+             :bind
+             (:map projectile-mode-map
+                   ("C-c p" . projectile-command-map)))
 
 ;; nex3/perspective-el
 ;; Perspective application
 (use-package perspective
   :after
   consult
-  
+
   :bind
   ;; switch from the default buffer list to...
   (("C-x C-b" . persp-list-buffers)
@@ -281,24 +287,24 @@
 
 ;; Dashboard settings
 (use-package dashboard
-	     :init
-	     (setq dashboard-startup-banner 'logo
-		   dashboard-set-heading-icons t
-		   dashboard-set-file-icons t
-		   dashboard-projects-backend 'projectile
-		   dashboard-items '((recents . 5)
-				     (projects . 5))
-		   
-		   ;; When using daemon mode, the default buffer
-		   ;; is *scratch*. I don't want that.
-		   initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-	     :config
-	     (dashboard-setup-startup-hook))
+             :init
+             (setq dashboard-startup-banner 'logo
+                   dashboard-set-heading-icons t
+                   dashboard-set-file-icons t
+                   dashboard-projects-backend 'projectile
+                   dashboard-items '((recents . 5)
+                                     (projects . 5))
+
+                   ;; When using daemon mode, the default buffer
+                   ;; is *scratch*. I don't want that.
+                   initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+             :config
+             (dashboard-setup-startup-hook))
 
 ;; ACE Window
 (use-package ace-window
-	     :config
-	     (global-set-key (kbd "M-o") 'ace-window))
+             :config
+             (global-set-key (kbd "M-o") 'ace-window))
 
 ;; Treemacs Related Stuff
 (use-package treemacs
@@ -308,13 +314,13 @@
   ;; Uncomment the following to have treemacs only show the current project
   :custom
   (treemacs-project-follow-mode 1)
-  
+
   :config
   (setq treemacs-git-mode 'deferred
-	treemacs-follow-mode t
-	treemacs-project-follow-cleanup t
-	treemacs-filewatch-mode t
-	treemacs-is-never-other-window t))
+        treemacs-follow-mode t
+        treemacs-project-follow-cleanup t
+        treemacs-filewatch-mode t
+        treemacs-is-never-other-window t))
 
 (use-package treemacs-projectile
   :after treemacs projectile)
@@ -400,18 +406,18 @@
 (set-face-background 'show-paren-match "#1e1e33")
 (set-face-foreground 'show-paren-match nil)
 (set-face-attribute 'show-paren-match nil
-		    :weight 'bold
-		    :underline nil
-		    :overline nil
-		    :slant 'normal)
+                    :weight 'bold
+                    :underline nil
+                    :overline nil
+                    :slant 'normal)
 (setq show-paren-style 'expression)
 
 ;; Highlight Sexp
 ;; https://www.emacswiki.org/emacs/HighlightSexp
 ;; Highlight the entire s-expression currently in
 (straight-use-package '(highlight-sexp :host github
-		      :repo "daimrod/highlight-sexp"
-		      :branch "master"))
+                      :repo "daimrod/highlight-sexp"
+                      :branch "master"))
 (setq hl-sexp-background-color "#1e1e33")
 (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
 (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
@@ -447,10 +453,10 @@
 (use-package company
   :hook
   ((prog-mode html-mode web-mode) . company-mode)
-  
+
   :config
   (setq company-minimum-prefix-length 1
-	company-idle-delay 0.4))
+        company-idle-delay 0.4))
 
 ;; LSP Stuff
 ;; Need the following for Typescript/Angular
@@ -458,19 +464,19 @@
 (use-package lsp-mode
   :commands
   (lsp lsp-deferred)
-  
+
   :hook
   ((html-mode web-mode json-mode
-	      js2-mode typescript-mode) . lsp-deferred)
+              js2-mode typescript-mode) . lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-c l"
-	lsp-auto-configure t
-	lsp-auto-guess-root t
-	lsp-enable-completion-at-point t
-	lsp-enable-indentation t
-	lsp-lens-enable t
-	lsp-enable-snippet t
-	lsp-modeline-diagnostics-enable t)
+        lsp-auto-configure t
+        lsp-auto-guess-root t
+        lsp-enable-completion-at-point t
+        lsp-enable-indentation t
+        lsp-lens-enable t
+        lsp-enable-snippet t
+        lsp-modeline-diagnostics-enable t)
 
   :config
   (lsp-enable-which-key-integration t)
@@ -517,9 +523,9 @@
    "\\.jsx\\'")
   :config
   (setq js2-mode-show-parse-errors nil
-	js2-mode-show-strict-warnings nil
-	js2-basic-offset 2
-	js-indent-level 2))
+        js2-mode-show-strict-warnings nil
+        js2-basic-offset 2
+        js-indent-level 2))
 
 (use-package add-node-modules-path
   :hook
@@ -532,8 +538,8 @@
   (rjsx-mode . prettier-js-mode)
   :custom
   (prettier-js-args '("--print-width" "100"
-		      "--single-quote" "true"
-		      "--trailing-comma" "all")))
+                      "--single-quote" "true"
+                      "--trailing-comma" "all")))
 
 ;; Clojure
 (use-package flycheck-clj-kondo)
@@ -551,9 +557,9 @@
   (dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
     (setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
   (dolist (checkers '((clj-kondo-clj . clojure-joker)
-		      (clj-kondo-cljs . clojurescript-joker)
-		      (clj-kondo-cljc . clojure-joker)
-		      (clj-kondo-edn . edn-joker)))
+                      (clj-kondo-cljs . clojurescript-joker)
+                      (clj-kondo-cljc . clojure-joker)
+                      (clj-kondo-edn . edn-joker)))
     (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
   (setq clojure-align-forms-automatically t))
 
@@ -561,8 +567,8 @@
 
 (use-package clj-deps-new
   :straight (clj-deps-new :type git
-			  :host github
-			  :repo "jpe90/emacs-clj-deps-new"))
+                          :host github
+                          :repo "jpe90/emacs-clj-deps-new"))
 
 ;; (straight-use-package '(clj-deps-new :type git
 ;; 				     :host github
@@ -575,9 +581,9 @@
 (use-package web-mode
   :config
   (setq web-mode-code-indent-offset 2
-	web-mode-markup-indent-offset 2
-	web-mode-attribute-indent-offset 2
-	web-mode-css-indent-offset 2)
+        web-mode-markup-indent-offset 2
+        web-mode-attribute-indent-offset 2
+        web-mode-css-indent-offset 2)
   (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -610,9 +616,9 @@
    (lambda (path)
      (let ((venv-path (f-expand ".venv" path)))
        (if (f-exists? venv-path)
-	   (progn
-	     (pyvenv-workon venv-path))
-	 t)))))
+           (progn
+             (pyvenv-workon venv-path))
+         t)))))
 ;; Will want the following installed in the virtual env:
 ;; python3-jedi black python3-autopep8 yapf3 python3-yapf
 (use-package elpy
@@ -635,12 +641,12 @@
   (require 'org-tempo)
   (org-babel-do-load-languages
    'org-babel-load-languages '((shell  . t)
-			       (js  . t)
-			       (emacs-lisp . t)
-			       (clojure . t)
-			       (python . t)))
+                               (js  . t)
+                               (emacs-lisp . t)
+                               (clojure . t)
+                               (python . t)))
   (setq org-babel-clojure-backend 'cider
-	org-confirm-babel-evaluate nil))
+        org-confirm-babel-evaluate nil))
 
 (define-skeleton org-header-skeleton
   "Header info for an Org file."
@@ -688,12 +694,12 @@
    ("C-c n r" . org-roam-node-random)
    ("C-c n c" . org-roam-capture)
    (:map org-mode-map
-	 (("C-c n i" . org-roam-node-insert)
-	  ("C-M-i" . completion-at-point)
-	  ("C-c n o" . org-id-get-create)
-	  ("C-c n t" . org-roam-tag-add)
-	  ("C-c n a" . org-roam-alias-add)
-	  ("C-c n l" . org-roam-buffer-toggle)))))
+         (("C-c n i" . org-roam-node-insert)
+          ("C-M-i" . completion-at-point)
+          ("C-c n o" . org-id-get-create)
+          ("C-c n t" . org-roam-tag-add)
+          ("C-c n a" . org-roam-alias-add)
+          ("C-c n l" . org-roam-buffer-toggle)))))
 ;; Polymode for ORG
 (use-package polymode)
 
