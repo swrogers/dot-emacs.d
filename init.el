@@ -641,7 +641,26 @@
                                (clojure . t)
                                (python . t)))
   (setq org-babel-clojure-backend 'cider
-        org-confirm-babel-evaluate nil))
+        org-confirm-babel-evaluate nil)
+  (setq org-capture-templates
+	'(;; My capture templates for org
+	  ("b" "Bookmark" entry
+	   (file+headline "~/Org/notes.org" "Bookmarks")
+	   "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n"
+	   :empty-lines 1)
+	  ;; More to come...
+	  )))
+
+;; Org Auto Tangle
+(use-package org-auto-tangle
+  :defer t
+  :hook
+  (org-mode . org-auto-tangle-mode)
+  :init
+  ;; Enable the following for default tangling
+  ;; otherwise, use ~#+auto_tangle: t~
+  ;; set to ~nil~ to disable.
+  (setq org-auto-tangle-default t))
 
 (define-skeleton org-header-skeleton
   "Header info for an Org file."
