@@ -641,7 +641,8 @@
                                (clojure . t)
                                (python . t)))
   (setq org-babel-clojure-backend 'cider
-        org-confirm-babel-evaluate nil)
+        org-confirm-babel-evaluate nil
+	org-directory "~/org")
   (setq org-capture-templates
 	'(;; My capture templates for org
 	  ("b" "Bookmark" entry
@@ -765,7 +766,24 @@
 
 ;; ox-hugo for website building
 ;; https://www.kengrimes.com/ox-hugo-tutorial/
-(use-package ox-hugo)
+(use-package ox-hugo
+  :config
+  (with-eval-after-load 'org-capture
+    (defun org-hugo-new-subtree-post-capture-template ()
+      "Returns `org-capture' template string for new Hugo post."
+      (let* ((title (read-from-minibuffer "Post Title: "))
+	     (fname (org-hugo-slug title)))
+	(mapconcat #'identity
+		   `(,(concat "* TODO " title)
+		     ":PROPERTIES:"
+		     ,(concat ":EXPORT_FILE_NAME: " fname)
+		     ":END:"
+		     "%?\n")
+		   "\n")))
+    (add-to-list 'org-capture-templates
+		 '("h" "Hugo post" entry
+		   (file+olp "all-posts.org" "Blog Posts")
+		   (function org-hugo-new-subtree-post-capture-template)))))
 
 ;; Load the custom.el file should it exist
 (when (file-exists-p custom-file)
