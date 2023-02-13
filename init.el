@@ -22,6 +22,7 @@
 
 (tool-bar-mode -1)
 ;; (menu-bar-mode -1)
+(global-visual-line-mode)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -642,8 +643,9 @@
                                (python . t)))
   (setq org-babel-clojure-backend 'cider
         org-confirm-babel-evaluate nil
-	org-directory "~/org")
-  (setq org-capture-templates
+	org-directory "~/org"
+	org-log-done 'time
+	org-capture-templates
 	'(;; My capture templates for org
 	  ("b" "Bookmark" entry
 	   (file+headline "~/Org/notes.org" "Bookmarks")
