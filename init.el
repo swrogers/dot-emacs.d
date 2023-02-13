@@ -24,6 +24,8 @@
 ;; (menu-bar-mode -1)
 (global-visual-line-mode)
 
+(global-auto-revert-mode)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Deal with the custom.el stuff
