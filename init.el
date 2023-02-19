@@ -719,6 +719,35 @@
           ("C-c n t" . org-roam-tag-add)
           ("C-c n a" . org-roam-alias-add)
           ("C-c n l" . org-roam-buffer-toggle)))))
+
+;; Org Journal
+(use-package org-journal
+  :after org
+  
+  :init
+  (setq org-journal-prefix-key "C-c j")
+
+  :config
+  (with-eval-after-load 'org-capture 
+    (setq org-journal-dir "~/org/journal/"
+	  org-journal-date-format "%A, %d %B %Y")
+    ;; Capture template addition
+    (defun org-journal-find-location ()
+      ;; from https://github.com/bastibe/org-journal#journal-capture-template
+      ;; Open today's journal, but specify a non-nil prefix argument in order
+      ;; to inhibit inserting the heading; org-capture will insert the heading.
+      (org-journal-new-entry t)
+      (unless (eq org-journal-file-type 'daily)
+	(org-narrow-to-subtree))
+      (goto-char (point-max)))
+    
+    (add-to-list 'org-capture-templates
+		 '("j" "Journal entry" plain
+		   (function org-journal-find-location)
+		   "** %(format-time-string org-journal-time-format)%^{Title}\n%i\n%?"
+		   :jump-to-captured nil
+		   :immediate-finish nil))))
+
 ;; Polymode for ORG
 (use-package polymode)
 
