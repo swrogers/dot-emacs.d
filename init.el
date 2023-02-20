@@ -650,7 +650,7 @@
 	org-capture-templates
 	'(;; My capture templates for org
 	  ("b" "Bookmark" entry
-	   (file+headline "~/Org/notes.org" "Bookmarks")
+	   (file+headline "~/org/notes.org" "Bookmarks")
 	   "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n"
 	   :empty-lines 1)
 	  ;; More to come...
@@ -730,7 +730,9 @@
   :config
   (with-eval-after-load 'org-capture 
     (setq org-journal-dir "~/org/journal/"
-	  org-journal-date-format "%A, %d %B %Y")
+	  org-journal-date-format "%A, %d %B %Y"
+	  org-journal-file-format "%Y-%m-%d.org"
+	  org-journal-file-header "#+TITLE: Daily Journal\n#+STARTUP: showeverything")
     ;; Capture template addition
     (defun org-journal-find-location ()
       ;; from https://github.com/bastibe/org-journal#journal-capture-template
